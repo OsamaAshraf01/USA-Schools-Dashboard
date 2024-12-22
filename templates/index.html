@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chart with Flask and amCharts 5</title>
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/locales/de_DE.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/germanyLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/fonts/notosans-sc.js"></script>
+
+    <script src="{{ url_for('static', filename='chart.js') }}"></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <img src="/static/images/logo.png" alt="Logo" />
+        <h1>Analytics</h1>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li>
+          <a href="#" class="sidebar-item active">
+            <i class="fas fa-chart-line"></i>
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="#" class="sidebar-item">
+            <i class="fas fa-chart-pie"></i>
+            Analytics
+          </a>
+        </li>
+        <li>
+          <a href="#" class="sidebar-item">
+            <i class="fas fa-file-alt"></i>
+            Reports
+          </a>
+        </li>
+
+        <div class="sidebar-divider"></div>
+
+        <li>
+          <a href="#" class="sidebar-item">
+            <i class="fas fa-cog"></i>
+            Settings
+          </a>
+        </li>
+        <li>
+          <a href="#" class="sidebar-item">
+            <i class="fas fa-question-circle"></i>
+            Help Center
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <a href="https://www.linkedin.com/in/osama--ashraf/" target="_blank"
+            ><div class="user-avatar"></div
+          ></a>
+          <div class="user-info">
+            <div class="user-name">
+              <a
+                href="https://www.linkedin.com/in/osama--ashraf/"
+                target="_blank"
+                >Osama Ashraf</a
+              >
+            </div>
+            <div class="user-role">Admin</div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="dashboard">
+      <header class="header">
+        <h1>USA Public Schools Dashboard</h1>
+        <div class="date">Last updated: Dec 20, 2024</div>
+      </header>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Total Schools</h3>
+          <p class="stat" id="totalSchools"></p>
+          <!-- <span class="trend negative">-00.00%</span> -->
+        </div>
+        <div class="stat-card">
+          <h3>Total Students</h3>
+          <p class="stat" id="totalStudents"></p>
+          <!-- <span class="trend positive">+00.00%</span> -->
+        </div>
+        <div class="stat-card">
+          <h3>Total Teachers</h3>
+          <p class="stat" id="totalTeachers"></p>
+          <!-- <span class="trend positive">+00.00%</span> -->
+        </div>
+        <div class="stat-card">
+          <h3>Avg. Student-Teacher Ratio</h3>
+          <p class="stat" id="avgStTchRatio"></p>
+          <!-- <span class="trend" id="avgStTchRatioPercent"></span> -->
+        </div>
+      </div>
+      <div class="grid-container">
+        <div class="chart-card full-row">
+          <h2>Students Distribution</h2>
+          <div class="chart-container" id="mapChart"></div>
+        </div>
+
+        <div class="chart-card">
+          <h2>Education Levels</h2>
+          <div class="chart-container" id="pieChart"></div>
+        </div>
+
+        <div class="chart-card">
+          <h2>Population-Teachers Relation</h2>
+          <div class="chart-container" id="scatterChart"></div>
+        </div>
+
+        <div class="chart-card full-row">
+          <h2>Schools By Grade</h2>
+          <div class="chart-container" id="columnChart"></div>
+        </div>
+
+        <div class="chart-card" style="display: none">
+          <h2>Line Chart</h2>
+          <div class="chart-container" id="lineChart"></div>
+        </div>
+
+        <div class="chart-card" style="display: none">
+          <h2>Performance Metrics</h2>
+          <div class="chart-container" id="radarChart"></div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/static/chart.js"></script>
+  </body>
+</html>
